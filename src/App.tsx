@@ -1,12 +1,11 @@
+import { RouterProvider } from "react-router";
+import { createRouter } from "./app/routing/app-router";
 import "./App.css";
-import { UsersListEntry } from "./entities/user";
+
+const router = createRouter();
 
 function App() {
-  return (
-    <div>
-      <UsersListEntry />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

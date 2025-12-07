@@ -4,13 +4,11 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import { DiProvider } from "./shared/lib/di";
-import { createContainer } from "./app/container.tsx";
-
-const container = createContainer();
+import { rootContainer } from "./app/modules/root.module.ts";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <DiProvider container={container}>
+    <DiProvider container={rootContainer}>
       <App />
     </DiProvider>
   </StrictMode>
