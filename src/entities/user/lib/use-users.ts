@@ -1,30 +1,33 @@
-import { useEffect, useState } from "react";
-import { IUserRepository, User } from "../model/user.types";
+import { useMemo } from "react";
+import { createUserApi } from "../model/api/create-user-api";
+import { UserService } from "../model/user.service";
+import { User } from "../model/user.types";
 
 interface UseUsersParams {
-  userApi: IUserRepository;
+  service: UserService;
 }
 
-export const useUsers = ({ userApi }: UseUsersParams) => {
-  const [users, setUsers] = useState<User[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+interface UseUsersReturn {
+  users: User[];
+  isLoading: boolean;
+  isError: boolean;
+  error: string | null;
+}
 
-  useEffect(() => {
-    const request = async () => {
-      setIsLoading(true);
-      try {
-        const users = await userApi.getUsers();
-        setUsers(users);
-      } catch (e) {
-        setError(JSON.stringify(e));
-      } finally {
-        setIsLoading(false);
-      }
-    };
+export const useUsers = ({ service }: UseUsersParams): UseUsersReturn => {
+  const api = useMemo(() => createUserApi(service), [service]);
 
-    request();
-  }, [userApi]);
+  const {
+    data: users = [],
+    error,
+    isError,
+    isLoading,
+  } = api.useGetUsersQuery();
 
-  return { users, error, isError: !!error, isLoading };
+  return {
+    users,
+    error: error as string | null,
+    isError,
+    isLoading,
+  };
 };

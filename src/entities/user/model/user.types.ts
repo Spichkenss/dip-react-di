@@ -23,5 +23,6 @@ export type User = {
 };
 
 export interface IUserRepository {
-  getUsers(): Promise<User[]>;
+  getAll(): Promise<User[]>;
+  remove(id: User["id"]): Promise<boolean>;
 }

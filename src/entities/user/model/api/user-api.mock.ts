@@ -1,5 +1,7 @@
 import type { IUserRepository, User } from "../user.types";
+import { injectable } from "inversify";
 
+@injectable()
 export class UserMockApi implements IUserRepository {
   private users: User[] = [
     {
@@ -27,7 +29,18 @@ export class UserMockApi implements IUserRepository {
     },
   ];
 
-  async getUsers(): Promise<User[]> {
+  async getAll(): Promise<User[]> {
     return this.users;
+  }
+
+  remove(id: User["id"]): Promise<boolean> {
+    const index = this.users.findIndex((user) => user.id === id);
+
+    if (index !== -1) {
+      this.users.splice(index, 1);
+      return Promise.resolve(true);
+    }
+
+    return Promise.resolve(false);
   }
 }
