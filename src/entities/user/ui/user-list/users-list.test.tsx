@@ -13,7 +13,7 @@ describe("UsersListEntry", () => {
   beforeAll(() => {
     const userModule = createContainerModule((options) => {
       options
-        .bind(INJECTION_TOKENS.USER_API)
+        .bind(INJECTION_TOKENS.USER_REPOSITORY)
         .to(UserMockApi)
         .inSingletonScope();
     });

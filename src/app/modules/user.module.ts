@@ -5,7 +5,10 @@ import { createContainerModule } from "../../shared/lib/di/create-container-modu
 import { rootContainer } from "./root.module";
 
 const userModule = createContainerModule((options) => {
-  options.bind(INJECTION_TOKENS.USER_API).to(UserProdApi).inSingletonScope();
+  options
+    .bind(INJECTION_TOKENS.USER_REPOSITORY)
+    .to(UserProdApi)
+    .inSingletonScope();
 });
 
 export const userContainer = createContainer(

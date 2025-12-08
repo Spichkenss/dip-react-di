@@ -4,7 +4,9 @@ import { IUserRepository } from "../../model/user.types";
 import { UsersList } from "./users-list";
 
 export const UsersListEntry = () => {
-  const userApi = useInjection<IUserRepository>(INJECTION_TOKENS.USER_API);
+  const userApi = useInjection<IUserRepository>(
+    INJECTION_TOKENS.USER_REPOSITORY
+  );
   const { users, isLoading } = useUsers({ userApi });
 
   if (isLoading) return <div>Загузка пользователей...</div>;
