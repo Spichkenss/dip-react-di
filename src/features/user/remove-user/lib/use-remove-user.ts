@@ -1,13 +1,14 @@
-import { useMemo } from "react";
-import { createRemoveUserApi } from "../model/api/create-remove-user-api";
+import { useCallback, useMemo } from "react";
+import { createRemoveUserApi } from "../api/create-remove-user-api";
 import { UserService } from "../../../../entities/user";
+import { UserId } from "../../../../entities/user/model/user.types";
 
 interface UseRemoveUserParams {
   userService: UserService;
 }
 
 interface UseRemoveUserReturn {
-  removeUser: (id: number) => Promise<boolean>;
+  removeUser: (userId: UserId) => Promise<boolean>;
   isLoading: boolean;
   isError: boolean;
   error: string | null;
@@ -21,9 +22,12 @@ export const useRemoveUser = ({
   const [removeUserMutation, { isLoading, isError, error }] =
     api.useRemoveUserMutation();
 
-  const removeUser = async (id: number): Promise<boolean> => {
-    return await removeUserMutation(id).unwrap();
-  };
+  const removeUser = useCallback(
+    async (userId: UserId): Promise<boolean> => {
+      return await removeUserMutation({ userId }).unwrap();
+    },
+    [removeUserMutation]
+  );
 
   return {
     removeUser,

@@ -1,1 +1,1 @@
-export { useRemoveUser } from "./lib/use-remove-user";
+export { RemoveButtonEntry } from "./ui/remove-user.entry";

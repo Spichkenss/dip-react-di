@@ -1,13 +1,17 @@
+import { UserEntity } from "../../model/user.types";
+
 interface UserCardProps {
-  name: string;
+  user: UserEntity;
   removeButtonSlot?: React.ReactNode;
 }
 
-export const UserCard = ({ name, removeButtonSlot }: UserCardProps) => {
+export const UserCard = ({ user, removeButtonSlot }: UserCardProps) => {
+  const { name } = user;
+
   return (
     <div style={{ display: "inline-flex", gap: 10 }}>
       <div>{name}</div>
-      <div>{removeButtonSlot}</div>
+      {removeButtonSlot}
     </div>
   );
 };

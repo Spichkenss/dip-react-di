@@ -1,4 +1,4 @@
-import { UserProdApi } from "../../entities/user/model/api/user-api.prod";
+import { UserProdApi } from "../../entities/user/api/user-api.prod";
 import { UserService } from "../../entities/user/model/user.service";
 import { INJECTION_TOKENS } from "../../shared/lib/di";
 import { createContainer } from "../../shared/lib/di/create-container";

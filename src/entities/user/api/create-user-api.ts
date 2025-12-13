@@ -1,12 +1,12 @@
-import { baseApi } from "../../../../shared/api/base-api";
-import { UserService } from "../user.service";
-import { User } from "../user.types";
+import { baseApi } from "../../../shared/api/base-api";
+import { GetUsersResponseDTO } from "../../../shared/dto/user.dto";
+import { UserService } from "../model/user.service";
 
 export const createUserApi = (userSerivce: UserService) => {
   return baseApi.injectEndpoints({
     overrideExisting: true,
     endpoints: (build) => ({
-      getUsers: build.query<User[], void>({
+      getUsers: build.query<GetUsersResponseDTO, void>({
         queryFn: async () => {
           try {
             const users = await userSerivce.getUsers();

@@ -1,17 +1,15 @@
-import type { User } from "../../model/user.types";
-import { UserCard } from "../user-card/user-card";
+import { UserEntity } from "../../model/user.types";
 
 interface UsersListProps {
-  users: User[];
+  users: UserEntity[];
+  renderItem: (user: UserEntity) => React.ReactNode;
 }
 
-export const UsersList = ({ users }: UsersListProps) => {
+export const UsersList = ({ users, renderItem }: UsersListProps) => {
   return (
     <ul data-testid="users-list">
-      {users.map(({ id, name }) => (
-        <li key={id}>
-          <UserCard name={name} />
-        </li>
+      {users.map((user) => (
+        <li key={user.id}>{renderItem(user)}</li>
       ))}
     </ul>
   );

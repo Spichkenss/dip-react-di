@@ -1,6 +1,6 @@
 import { Container } from "inversify";
 import { INJECTION_TOKENS } from "../../../../shared/lib/di/tokens";
-import { UserMockApi } from "../../model/api/user-api.mock";
+import { UserMockApi } from "../../api/user-api.mock";
 import { render, screen, waitFor } from "@testing-library/react";
 import { DiProvider } from "../../../../shared/lib/di";
 import { UsersListEntry } from "./users-list.entry";
@@ -9,6 +9,7 @@ import { createContainerModule } from "../../../../shared/lib/di/create-containe
 import { UserService } from "../../model/user.service";
 import { Provider } from "react-redux";
 import { AppStore, createStore } from "../../../../app/store/store";
+import { UserCard } from "../user-card/user-card";
 
 describe("UsersListEntry", () => {
   let container: Container;
@@ -38,7 +39,7 @@ describe("UsersListEntry", () => {
     render(
       <Provider store={store}>
         <DiProvider container={container}>
-          <UsersListEntry />
+          <UsersListEntry renderItem={(user) => <UserCard user={user} />} />
         </DiProvider>
       </Provider>
     );

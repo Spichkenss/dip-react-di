@@ -1,6 +1,7 @@
 import { inject } from "inversify";
 import { INJECTION_TOKENS } from "../../../shared/lib/di";
-import { IUserRepository } from "./user.types";
+import { UserId } from "./user.types";
+import { IUserRepository } from "../api/user-repo.types";
 
 export class UserService {
   constructor(
@@ -12,7 +13,7 @@ export class UserService {
     return this.userRepository.getAll();
   }
 
-  removeUser(id: number) {
-    return this.userRepository.remove(id);
+  removeUser(userId: UserId) {
+    return this.userRepository.remove({ userId });
   }
 }

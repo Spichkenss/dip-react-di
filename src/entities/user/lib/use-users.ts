@@ -1,14 +1,14 @@
 import { useMemo } from "react";
-import { createUserApi } from "../model/api/create-user-api";
+import { createUserApi } from "../api/create-user-api";
 import { UserService } from "../model/user.service";
-import { User } from "../model/user.types";
+import { UserEntity } from "../model/user.types";
 
 interface UseUsersParams {
   service: UserService;
 }
 
 interface UseUsersReturn {
-  users: User[];
+  users: UserEntity[];
   isLoading: boolean;
   isError: boolean;
   error: string | null;
