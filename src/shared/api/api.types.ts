@@ -18,3 +18,13 @@ export interface AxiosBaseQueryArgs<Meta, Response = BaseResponse> {
 export interface ServiceExtraOptions {
   authRequired?: boolean;
 }
+
+export type Loadable<Data> = {
+  data: Data | undefined;
+  isLoading: boolean;
+  isError: boolean;
+};
+
+export type Mutation<Params, Data> = {
+  mutate: (params: Params) => Promise<Data>;
+} & Loadable<Data>;

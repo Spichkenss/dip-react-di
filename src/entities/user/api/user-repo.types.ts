@@ -1,3 +1,4 @@
+import { APIResponse } from "../../../shared/api/httpClient";
 import {
   GetUsersResponseDTO,
   RemoveUserRequestDTO,
@@ -5,6 +6,6 @@ import {
 } from "../../../shared/dto/user.dto";
 
 export interface IUserRepository {
-  getAll(): Promise<GetUsersResponseDTO>;
-  remove(dto: RemoveUserRequestDTO): Promise<RemoveUserResponseDTO>;
+  getAll(): APIResponse<GetUsersResponseDTO>;
+  remove(dto: RemoveUserRequestDTO): APIResponse<RemoveUserResponseDTO>;
 }

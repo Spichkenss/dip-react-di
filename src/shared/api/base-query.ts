@@ -4,7 +4,7 @@ import {
   AxiosRequestHeaders,
   isAxiosError,
 } from "axios";
-import { axiosInstance } from "./axios";
+import { httpClient } from "./httpClient";
 import { AxiosBaseQueryArgs, ServiceExtraOptions } from "./api.types";
 
 const getRequestConfig = (args: string | AxiosRequestConfig) => {
@@ -35,7 +35,7 @@ export const axiosBaseQuery = <
     try {
       const requestConfig = getRequestConfig(args);
 
-      const result = await axiosInstance({
+      const result = await httpClient({
         ...requestConfig,
         headers: prepareHeaders
           ? prepareHeaders(
